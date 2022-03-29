@@ -167,7 +167,7 @@ class WebBrowser(QWebEngineView):
             logger.info("Initiating autologin", cred=credentials)
             for url_pattern, rules in self._auto_fill_rules.items():
                 script = QWebEngineScript()
-                script.setInjectionPoint(QWebEngineScript.DocumentReady)
+                script.setInjectionPoint(QWebEngineScript.Deferred)
                 script.setWorldId(QWebEngineScript.ApplicationWorld)
                 script.setSourceCode(
                     f"""
@@ -177,9 +177,8 @@ class WebBrowser(QWebEngineView):
 
 function autoFill() {{
     {get_selectors(rules, credentials)}
-    setTimeout(autoFill, 1000);
 }}
-autoFill();
+setTimeout(autoFill, 1000);
 """
                 )
                 self.page().scripts().insert(script)
@@ -244,7 +243,7 @@ def get_selectors(rules, credentials):
             value = json.dumps(getattr(credentials, rule.fill, None))
             if value:
                 statements.append(
-                    f"""var elem = document.querySelector({selector}); if (elem) {{ elem.dispatchEvent(new Event("focus")); elem.value = {value}; elem.dispatchEvent(new Event("blur")); }}"""
+                    f"""var elem = document.querySelector({selector}); if (elem) {{ elem.dispatchEvent(new Event("focus")); elem.focus(); document.execCommand('selectAll', false); document.execCommand('insertText', false, {value}); elem.blur(); elem.dispatchEvent(new Event("focusout")); }}"""
                 )
             else:
                 logger.warning(
@@ -254,6 +253,6 @@ def get_selectors(rules, credentials):
                 )
         elif rule.action == "click":
             statements.append(
-                f"""var elem = document.querySelector({selector}); if (elem) {{ elem.dispatchEvent(new Event("focus")); elem.click(); }}"""
+                f"""var elem = document.querySelector({selector}); if (elem) {{ elem.dispatchEvent(new Event("focus")); elem.focus(); elem.click(); }}"""
             )
     return "\n".join(statements)
