@@ -243,7 +243,14 @@ def get_selectors(rules, credentials):
             value = json.dumps(getattr(credentials, rule.fill, None))
             if value:
                 statements.append(
-                    f"""var elem = document.querySelector({selector}); if (elem) {{ elem.dispatchEvent(new Event("focus")); elem.focus(); document.execCommand('selectAll', false); document.execCommand('insertText', false, {value}); elem.blur(); elem.dispatchEvent(new Event("focusout")); }}"""
+                    f"""var elem = document.querySelector({selector}); 
+                    if (elem) {{ 
+                      elem.dispatchEvent(new Event("focus")); 
+                      elem.focus(); 
+                      document.execCommand('selectAll', false);
+                      document.execCommand('insertText', false, {value}); 
+                      elem.blur(); elem.dispatchEvent(new Event("focusout"));
+                    }}"""
                 )
             else:
                 logger.warning(
