@@ -121,10 +121,10 @@ async def _run(args, cfg):
     if cfg.default_profile and not (args.use_profile_selector or args.server):
         selected_profile = cfg.default_profile
     elif args.use_profile_selector or args.profile_path:
-        cfg.session_data.expires = None
-        cfg.session_data.host = ""
-        cfg.session_data.cookie = ""
-        cfg.session_data.fingerprint = ""
+        # cfg.session_data.expires = None
+        # cfg.session_data.host = ""
+        # cfg.session_data.cookie = ""
+        # cfg.session_data.fingerprint = ""
         profiles = get_profiles(Path(args.profile_path))
         if not profiles:
             raise ValueError("No profile found", 17)
@@ -148,7 +148,7 @@ async def _run(args, cfg):
     # if cfg.session_data.is_valid and selected_profile.is_same(cfg.session_data.profile):
     #     return cfg.session_data.as_auth_response(), cfg.session_data.profile
 
-    cfg.session_data.profile = selected_profile
+    # cfg.session_data.profile = selected_profile
 
     auth_response = await authenticate_to(
         selected_profile, args.proxy, credentials, display_mode
@@ -157,10 +157,10 @@ async def _run(args, cfg):
     if args.on_disconnect and not cfg.on_disconnect:
         cfg.on_disconnect = args.on_disconnect
 
-    cfg.session_data.expires = datetime.now() + timedelta(hours=1)
-    cfg.session_data.host = selected_profile.address
-    cfg.session_data.cookie = auth_response.session_token
-    cfg.session_data.fingerprint = auth_response.server_cert_hash
+    # cfg.session_data.expires = datetime.now() + timedelta(hours=1)
+    # cfg.session_data.host = selected_profile.address
+    # cfg.session_data.cookie = auth_response.session_token
+    # cfg.session_data.fingerprint = auth_response.server_cert_hash
 
     return auth_response, selected_profile
 
@@ -204,7 +204,10 @@ def run_openconnect(auth_info, host, proxy, args):
 
     session_token = auth_info.session_token.encode("utf-8")
     logger.debug("Starting OpenConnect", command_line=command_line)
-    return subprocess.run(command_line, input=session_token).returncode
+    try:
+        return subprocess.run(command_line, input=session_token).returncode
+    except:
+        return 0
 
 
 def handle_disconnect(command):
