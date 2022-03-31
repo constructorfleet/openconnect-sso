@@ -110,6 +110,14 @@ def get_default_auto_fill_rules():
             AutoFillRule(selector="input[type=email]", fill="username").as_dict(),
             AutoFillRule(selector="input[type=password]", fill="password").as_dict(),
             AutoFillRule(selector="input[type=submit]", action="click").as_dict(),
+        ],
+        "https://login.wwt.com/signin/refresh*": [
+            AutoFillRule(selector="input[id=okta-signin-username]", fill="username").as_dict(),
+            AutoFillRule(selector="input[id=okta-signin-password]", fill="password").as_dict(),
+            AutoFillRule(selector="input[id=okta-signin-submit]", action="click").as_dict(),
+        ],
+        "https://login.wwt.com/signin/verify/okta/sms": [
+            AutoFillRule(selector="a.sms-request-button:not(.link-button-disabled)", action="click").as_dict()
         ]
     }
 
