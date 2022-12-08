@@ -23,10 +23,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
-dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit", "cloudpickle"]
-docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
-tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
-tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
+dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "sphinx", "sphinx-notfound-page", "zope.interface"]
+docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
+tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "zope.interface"]
+tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
 
 [[package]]
 name = "black"
@@ -47,11 +47,11 @@ d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
 
 [[package]]
 name = "certifi"
-version = "2021.10.8"
+version = "2022.12.7"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 
 [[package]]
 name = "cffi"
@@ -73,7 +73,7 @@ optional = false
 python-versions = ">=3.5.0"
 
 [package.extras]
-unicode_backport = ["unicodedata2"]
+unicode-backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
@@ -129,12 +129,12 @@ python-versions = ">=3.6"
 cffi = ">=1.12"
 
 [package.extras]
-docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx-rtd-theme"]
-docstest = ["pyenchant (>=1.6.11)", "twine (>=1.12.0)", "sphinxcontrib-spelling (>=4.0.1)"]
+docs = ["sphinx (>=1.6.5,!=1.8.0,!=3.1.0,!=3.1.1)", "sphinx_rtd_theme"]
+docstest = ["pyenchant (>=1.6.11)", "sphinxcontrib-spelling (>=4.0.1)", "twine (>=1.12.0)"]
 pep8test = ["black", "flake8", "flake8-import-order", "pep8-naming"]
 sdist = ["setuptools_rust (>=0.11.4)"]
 ssh = ["bcrypt (>=3.1.5)"]
-test = ["pytest (>=6.2.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,!=3.79.2)"]
+test = ["hypothesis (>=1.11.4,!=3.79.2)", "iso8601", "pretend", "pytest (>=6.2.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pytz"]
 
 [[package]]
 name = "idna"
@@ -157,8 +157,8 @@ typing-extensions = {version = ">=3.6.4", markers = "python_version < \"3.8\""}
 zipp = ">=0.5"
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["flufl.flake8", "importlib-resources (>=1.3)", "packaging", "pep517", "pyfakefs", "pytest (>=4.6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [[package]]
 name = "jeepney"
@@ -169,8 +169,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-test = ["pytest", "pytest-trio", "pytest-asyncio", "testpath", "trio", "async-timeout"]
-trio = ["trio", "async-generator"]
+test = ["async-timeout", "pytest", "pytest-asyncio", "pytest-trio", "testpath", "trio"]
+trio = ["async_generator", "trio"]
 
 [[package]]
 name = "keyring"
@@ -187,8 +187,8 @@ pywin32-ctypes = {version = "<0.1.0 || >0.1.0,<0.1.1 || >0.1.1", markers = "sys_
 SecretStorage = {version = ">=3.2", markers = "sys_platform == \"linux\""}
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "jaraco.tidelift (>=1.4)"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["jaraco.packaging (>=8.2)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [[package]]
 name = "lxml"
@@ -201,7 +201,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 [package.extras]
 cssselect = ["cssselect (>=0.7)"]
 html5 = ["html5lib"]
-htmlsoup = ["beautifulsoup4"]
+htmlsoup = ["BeautifulSoup4"]
 source = ["Cython (>=0.29.7)"]
 
 [[package]]
@@ -326,6 +326,7 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 more-itertools = ">=4.0.0"
 pluggy = ">=0.7"
 py = ">=1.5.0"
+setuptools = "*"
 six = ">=1.10.0"
 
 [[package]]
@@ -355,7 +356,7 @@ coverage = ">=4.4"
 pytest = ">=3.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist", "virtualenv"]
+testing = ["fields", "hunter", "process-tests (==2.0.2)", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
 name = "pytest-httpserver"
@@ -369,9 +370,9 @@ python-versions = ">=3.6,<4.0"
 Werkzeug = ">=2.0.0"
 
 [package.extras]
-dev = ["autopep8", "coverage", "flake8 (>4.0.0)", "ipdb", "mypy", "pytest-cov", "pytest", "reno", "requests", "sphinx", "sphinx-rtd-theme", "types-requests"]
-test = ["coverage", "flake8 (>4.0.0)", "mypy", "pytest-cov", "pytest", "requests", "types-requests"]
-doc = ["reno", "sphinx", "sphinx-rtd-theme"]
+dev = ["autopep8", "coverage", "flake8 (>4.0.0)", "ipdb", "mypy", "pytest", "pytest-cov", "reno", "requests", "sphinx", "sphinx_rtd_theme", "types-requests"]
+doc = ["reno", "sphinx", "sphinx_rtd_theme"]
+test = ["coverage", "flake8 (>4.0.0)", "mypy", "pytest", "pytest-cov", "requests", "types-requests"]
 
 [[package]]
 name = "pywin32-ctypes"
@@ -405,7 +406,7 @@ urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
-use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
+use-chardet-on-py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
 name = "secretstorage"
@@ -418,6 +419,19 @@ python-versions = ">=3.6"
 [package.dependencies]
 cryptography = ">=2.0"
 jeepney = ">=0.6"
+
+[[package]]
+name = "setuptools"
+version = "65.6.3"
+description = "Easily download, build, install, upgrade, and uninstall Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
+testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
+testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
 name = "setuptools-scm"
@@ -453,9 +467,9 @@ python-versions = ">=3.6"
 typing-extensions = {version = "*", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "rich", "cogapp", "tomli", "coverage", "freezegun (>=0.2.8)", "pretend", "pytest-asyncio", "pytest (>=6.0)", "simplejson", "furo", "sphinx", "sphinx-notfound-page", "sphinxcontrib-mermaid", "twisted"]
+dev = ["cogapp", "coverage[toml]", "freezegun (>=0.2.8)", "furo", "pre-commit", "pretend", "pytest (>=6.0)", "pytest-asyncio", "rich", "simplejson", "sphinx", "sphinx-notfound-page", "sphinxcontrib-mermaid", "tomli", "twisted"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "sphinxcontrib-mermaid", "twisted"]
-tests = ["coverage", "freezegun (>=0.2.8)", "pretend", "pytest-asyncio", "pytest (>=6.0)", "simplejson"]
+tests = ["coverage[toml]", "freezegun (>=0.2.8)", "pretend", "pytest (>=6.0)", "pytest-asyncio", "simplejson"]
 
 [[package]]
 name = "toml"
@@ -482,8 +496,8 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
 [package.extras]
-brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)", "brotlipy (>=0.6.0)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "ipaddress", "pyOpenSSL (>=0.14)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
@@ -514,8 +528,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
-testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
+docs = ["jaraco.packaging (>=8.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.0.1)", "pytest-flake8", "pytest-mypy"]
 
 [extras]
 full = ["PyQt5", "PyQtWebEngine"]
@@ -543,8 +557,8 @@ black = [
     {file = "black-19.3b0.tar.gz", hash = "sha256:68950ffd4d9169716bcb8719a56c07a2f4485354fec061cdd5910aa07369731c"},
 ]
 certifi = [
-    {file = "certifi-2021.10.8-py2.py3-none-any.whl", hash = "sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569"},
-    {file = "certifi-2021.10.8.tar.gz", hash = "sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872"},
+    {file = "certifi-2022.12.7-py3-none-any.whl", hash = "sha256:4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18"},
+    {file = "certifi-2022.12.7.tar.gz", hash = "sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3"},
 ]
 cffi = [
     {file = "cffi-1.15.0-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:c2502a1a03b6312837279c8c1bd3ebedf6c12c4228ddbad40912d671ccc8a962"},
@@ -864,13 +878,12 @@ secretstorage = [
     {file = "SecretStorage-3.3.1-py3-none-any.whl", hash = "sha256:422d82c36172d88d6a0ed5afdec956514b189ddbfb72fefab0c8a1cee4eaf71f"},
     {file = "SecretStorage-3.3.1.tar.gz", hash = "sha256:fd666c51a6bf200643495a04abb261f83229dcb6fd8472ec393df7ffc8b6f195"},
 ]
+setuptools = [
+    {file = "setuptools-65.6.3-py3-none-any.whl", hash = "sha256:57f6f22bde4e042978bcd50176fdb381d7c21a9efa4041202288d3737a0c6a54"},
+    {file = "setuptools-65.6.3.tar.gz", hash = "sha256:a7620757bf984b58deaf32fc8a4577a9bbc0850cf92c20e1ce41c38c19e5fb75"},
+]
 setuptools-scm = [
-    {file = "setuptools_scm-3.5.0-py2.7.egg", hash = "sha256:fa6511072840d7eaad3ea36cc8849f437fefd85b32499a7f6026cba16ebbf63a"},
     {file = "setuptools_scm-3.5.0-py2.py3-none-any.whl", hash = "sha256:0d23db3d43e0a43eb7196bcf0eb8a4a2eb0561f621ed7ec44b2fdccfd907e38f"},
-    {file = "setuptools_scm-3.5.0-py3.5.egg", hash = "sha256:783c143363091d3cc0d94766a9a14cdfc7ba8d29741004b6fa806ada7a8bf211"},
-    {file = "setuptools_scm-3.5.0-py3.6.egg", hash = "sha256:0a376ca6f48dfe35d2c2bba246751830247b145aec7b7fb81a52091d04226ce2"},
-    {file = "setuptools_scm-3.5.0-py3.7.egg", hash = "sha256:8a8b4109ee1a114f9ee8f7a83836284cb6429d481bd93daf64908a3d64c7c56e"},
-    {file = "setuptools_scm-3.5.0-py3.8.egg", hash = "sha256:e39c234058c25b529739c516651cde028960812ea4a35ee31ab623e9a62b10c8"},
     {file = "setuptools_scm-3.5.0.tar.gz", hash = "sha256:5bdf21a05792903cafe7ae0c9501182ab52497614fa6b1750d9dbae7b60c1a87"},
 ]
 six = [
